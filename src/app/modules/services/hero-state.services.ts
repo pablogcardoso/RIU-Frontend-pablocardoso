@@ -1,10 +1,12 @@
 import { Injectable, signal } from '@angular/core';
 import { Hero } from '../../domain/entities/hero';
+import { initialHeroesState } from '../../domain/entities/initial-state';
 
 @Injectable({ providedIn: 'root' })
 export class HeroStateService {
 
-    private heroesSignal = signal<Hero[]>([]);
+    private heroesSignal = signal<Hero[]>([...initialHeroesState
+    ]);
 
     heroes = this.heroesSignal.asReadonly();
 
