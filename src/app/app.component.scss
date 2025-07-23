@@ -1,0 +1,12 @@
+.hero-container {
+    .hero-spacer {
+        flex: 1 1 auto;
+    }
+
+    .hero-content {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 2rem;
+    }
+}
