@@ -5,10 +5,12 @@ table {
 .mat-header-cell {
     font-weight: bold;
 }
+
 .hero-list-header {
     font-size: 1.5rem;
     margin-bottom: 1rem;
 }
+
 .hero-list-actions {
     display: flex;
     justify-content: flex-end;
@@ -17,8 +19,16 @@ table {
     margin-right: 10px;
 
     .hero-list-add {
-       
-       height: 2rem;
-       width: 2rem;
+
+        height: 2rem;
+        width: 2rem;
+    }
+}
+
+.hero-row-actions {
+    text-align: end;
+
+    button {
+        margin-left: 1rem;
     }
 }

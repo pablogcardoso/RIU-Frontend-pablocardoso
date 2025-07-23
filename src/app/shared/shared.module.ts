@@ -7,6 +7,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSortModule } from '@angular/material/sort';
 import { MatCardModule } from '@angular/material/card';
 
+
 @NgModule({
     imports: [
         MatToolbarModule,
@@ -14,14 +15,17 @@ import { MatCardModule } from '@angular/material/card';
         MatIconModule,
         MatTableModule,
         MatSortModule,
-        MatCardModule],
+        MatCardModule,
+        
+        ],
     exports: [
         MatToolbarModule,
         MatButtonModule,
         MatIconModule,
         MatTableModule,
         MatSortModule,
-        MatCardModule],
+        MatCardModule,
+        ],
     declarations: [],
     providers: [],
 })
