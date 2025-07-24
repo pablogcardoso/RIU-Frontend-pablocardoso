@@ -9,6 +9,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.component.scss'
 })
 export class AppComponent  {
-  title = 'Heroes';
+  title = 'Heroes  - Challenge (Riu)';
 
 }

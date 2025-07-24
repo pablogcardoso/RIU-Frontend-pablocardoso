@@ -1,0 +1,35 @@
+table {
+    width: 100%;
+}
+
+.mat-header-cell {
+    font-weight: bold;
+}
+
+.hero-list-header {
+    display: block;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.hero-list-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin: 10px;
+
+    .hero-list-add {
+
+        height: 2rem;
+        width: 2rem;
+    }
+}
+
+.hero-row-actions {
+    text-align: end;
+
+    button {
+        margin-left: 1rem;
+    }
+}

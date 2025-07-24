@@ -1,14 +1,14 @@
 import { TestBed } from '@angular/core/testing';
 import { HeroStateService } from './hero-state.services';
-import { Hero } from '../../domain/entities/hero';
+import { IHero } from '../../domain/entities/hero';
 import { HeroService } from './hero.services';
 
 class MockHeroStateService {
-  private heroesList: Hero[] = [];
+  private heroesList: IHero[] = [];
   
   heroes = () => this.heroesList;
 
-  addHero(hero: Hero) {
+  addHero(hero: IHero) {
     this.heroesList.push(hero);
   }
 
@@ -37,14 +37,14 @@ describe('HeroService', () => {
   });
 
   it('Should add a hero when calling addHero()', () => {
-    const hero: Hero = { id: '1', name: 'Batman', power: 'Detective skills' };
+    const hero: IHero = { id: '1', name: 'Batman', power: 'Detective skills' };
     service.addHero(hero);
     expect(heroState.heroes()).toContain(hero);
   });
 
   it('Should remove a hero when calling removeHero()', () => {
-    const hero1: Hero = { id: '1', name: 'Batman', power: 'Detective skills' };
-    const hero2: Hero = { id: '2', name: 'Superman', power: 'Super strength' };
+    const hero1: IHero = { id: '1', name: 'Batman', power: 'Detective skills' };
+    const hero2: IHero = { id: '2', name: 'Superman', power: 'Super strength' };
     heroState.addHero(hero1);
     heroState.addHero(hero2);
 
@@ -54,7 +54,7 @@ describe('HeroService', () => {
   });
 
   it('Should get a hero by id when calling getHero()', () => {
-    const hero: Hero = { id: '10', name: 'Flash', power: 'Super speed' };
+    const hero: IHero = { id: '10', name: 'Flash', power: 'Super speed' };
     heroState.addHero(hero);
 
     const result = service.getHero('10');
@@ -62,8 +62,8 @@ describe('HeroService', () => {
   });
 
   it('Should return all heroes if no filter is applied', () => {
-    const hero1: Hero = { id: '1', name: 'Batman', power: 'Detective skills' };
-    const hero2: Hero = { id: '2', name: 'Superman', power: 'Super strength' };
+    const hero1: IHero = { id: '1', name: 'Batman', power: 'Detective skills' };
+    const hero2: IHero = { id: '2', name: 'Superman', power: 'Super strength' };
     heroState.addHero(hero1);
     heroState.addHero(hero2);
 
@@ -72,8 +72,8 @@ describe('HeroService', () => {
   });
 
   it('Should return filtered heroes by name when calling getHeroes() with a name filter', () => {
-    const hero1: Hero = { id: '1', name: 'Batman', power: 'Detective skills' };
-    const hero2: Hero = { id: '2', name: 'Superman', power: 'Super strength' };
+    const hero1: IHero = { id: '1', name: 'Batman', power: 'Detective skills' };
+    const hero2: IHero = { id: '2', name: 'Superman', power: 'Super strength' };
     heroState.addHero(hero1);
     heroState.addHero(hero2);
 
@@ -83,8 +83,8 @@ describe('HeroService', () => {
   });
 
   it('Should filter heroes by id when calling filterHeroById()', () => {
-    const hero1: Hero = { id: '1', name: 'Batman', power: 'Detective skills' };
-    const hero2: Hero = { id: '2', name: 'Superman', power: 'Super strength' };
+    const hero1: IHero = { id: '1', name: 'Batman', power: 'Detective skills' };
+    const hero2: IHero = { id: '2', name: 'Superman', power: 'Super strength' };
     heroState.addHero(hero1);
     heroState.addHero(hero2);
 
