@@ -1,10 +1,10 @@
 import { IHero } from "../entities/hero";
 
 export const HEROES_DEFAULT: IHero[] = [
-    { id: "HERO-1", name: 'Batman', power: 'Detective skills' },
-    { id: "HERO-2", name: 'Superman', power: 'Super strength' },
-    { id: "HERO-3", name: 'Wonder woman', power: 'Amazonian warrior' },
-    { id: "HERO-4", name: 'Flash', power: 'Super speed' },
-    { id: "HERO-5", name: 'Aquaman', power: 'Underwater abilities' },
-    { id: "HERO-6", name: 'Green lantern', power: 'Power ring' }
+    { id: "H13354232", name: 'Batman', power: 'Detective skills' },
+    { id: "H223054241", name: 'Superman', power: 'Super strength' },
+    { id: "H323053332", name: 'Wonder woman', power: 'Amazonian warrior' },
+    { id: "H423054202", name: 'Flash', power: 'Super speed' },
+    { id: "H523054222", name: 'Aquaman', power: 'Underwater abilities' },
+    { id: "H623054212", name: 'Green lantern', power: 'Power ring' }
 ];

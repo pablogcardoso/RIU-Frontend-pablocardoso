@@ -17,7 +17,7 @@ describe('AppComponent', () => {
   it(`should have the 'riu-hero-challenge' title`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('Heroes');
+    expect(app.title).toEqual('Heroes  - Challenge (Riu)');
   });
 
 });

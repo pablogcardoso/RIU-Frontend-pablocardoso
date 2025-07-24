@@ -17,11 +17,12 @@ export class HeroStateService {
 
     constructor() { }
 
-    addHero(hero: IHero): void {
+    addHero(hero: IHero): boolean {
         this.stateSignal.update(current => {
             const updatedHeroes = [...current.heroes || [], hero];
             return { ...current, heroes: updatedHeroes };
         });
+        return true;
     }
 
     removeHero(id: string): void {
@@ -32,6 +33,13 @@ export class HeroStateService {
 
     setHeroes(heroes: IHero[]): void {
         this.stateSignal.set({ ...this.state, heroes });
+    }
+
+    setHero(hero: IHero): void {
+        this.stateSignal.update(current => {
+            const updatedHeroes = current.heroes?.map(h => h.id === hero.id ? hero : h) || [];
+            return { ...current, heroes: updatedHeroes };
+        });
     }
 
     clear(): void {
