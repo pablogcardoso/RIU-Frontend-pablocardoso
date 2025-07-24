@@ -1,6 +1,6 @@
-import { Hero } from "./hero";
+import { IHero } from "../entities/hero";
 
-export const initialHeroesState: Hero[] = [
+export const HEROES_DEFAULT: IHero[] = [
     { id: "HERO-1", name: 'Batman', power: 'Detective skills' },
     { id: "HERO-2", name: 'Superman', power: 'Super strength' },
     { id: "HERO-3", name: 'Wonder woman', power: 'Amazonian warrior' },
