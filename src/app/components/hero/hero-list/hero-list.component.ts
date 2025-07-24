@@ -6,6 +6,7 @@ import { HeroService } from '../../services/hero.services';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../../shared/components/confirm-dialog/confirm-dialog.component';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import { HeroViewComponent } from '../hero-view/hero-view.component';
 
 @Component({
   selector: 'app-hero-list',
@@ -32,8 +33,7 @@ export class HeroListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
   }
 
-  editHero(hero: IHero) {
-  }
+  
 
   deleteHero(hero: IHero) {
      const dialogRef = this.dialog.open(ConfirmDialogComponent, {
@@ -48,7 +48,29 @@ export class HeroListComponent implements OnInit {
     });
   }
 
-  addHero() {    
+  addHero() {
+    const dialogRef = this.dialog.open(HeroViewComponent, {      
+      width: '400px',
+      enterAnimationDuration: '0.5s',
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data = this.heroService.getHeroes();
+      }
+    });
+  }
+
+  editHero(hero: IHero) {
+    const dialogRef = this.dialog.open(HeroViewComponent, {
+      width: '400px',
+      enterAnimationDuration: '0.5s',
+      data: { hero }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.dataSource.data = this.heroService.getHeroes();
+      }
+    });
   }
 
   applyFilter(search: string) {

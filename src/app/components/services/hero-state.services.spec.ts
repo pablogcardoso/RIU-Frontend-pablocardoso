@@ -21,8 +21,17 @@ describe('HeroStateService', () => {
     service.addHero(hero);
 
     const result = service.state();
-    expect(result.heroes?.length).toBe(1);
-    expect(result.heroes?.[0]).toEqual(hero);
+    expect(result.heroes?.length).toBe(7);
+    expect(result.heroes?.[0].name).toEqual(hero.name);
+  });
+
+  it('should set a hero when calling setHero()', () => {
+    const hero: IHero = { id: '1', name: 'Batman', power: 'Detective skills' };
+    service.setHero(hero);    
+    const result = service.state();
+    expect(result.heroes?.length).toBe(6);
+    expect(result.heroes?.[0].name).toEqual(hero.name);
+    expect(result.heroes?.[0].power).toEqual(hero.power);
   });
 
   it('Should remove a hero when calling removeHero()', () => {
@@ -64,7 +73,7 @@ describe('HeroStateService', () => {
 
     const result = service.state();
 
-    expect(result.heroes?.length).toBe(2);
+    expect(result.heroes?.length).toBe(8);
     expect(result.heroes).toContain(hero1);
     expect(result.heroes).toContain(hero2);
   });
