@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, input, OnInit, output } from '@angular/core';
 
 @Component({
     standalone: false,
@@ -6,7 +6,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     template: `
         <mat-card class="hero-list-search">
             <mat-icon class="icon-search">search</mat-icon>
-            <input id="searchName" [placeholder]="placeholder" class="hero-list-search-name" (input)="search($event)" />
+            <input id="searchName" [placeholder]="placeholder()" class="hero-list-search-name" (input)="search($event)" />
         </mat-card>
     `,
     styles:  `
@@ -42,8 +42,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 export class SearchBarComponent implements OnInit {
 
-    @Input() placeholder: string = 'Buscar';
-    @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
+    readonly placeholder = input<string>('Buscar');
+    readonly searchEvent = output<string>();
 
     constructor() { }
 
