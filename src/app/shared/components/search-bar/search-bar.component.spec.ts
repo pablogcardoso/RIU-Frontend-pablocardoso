@@ -5,14 +5,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 
-describe('SearchBarComponent (signals)', () => {
+describe('SearchBarComponent', () => {
   let component: SearchBarComponent;
   let fixture: ComponentFixture<SearchBarComponent>;
   let inputEl: DebugElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SearchBarComponent, MatCardModule, MatIconModule],
+      declarations: [SearchBarComponent],
+      imports: [MatCardModule, MatIconModule],
     }).compileComponents();
 
     fixture = TestBed.createComponent(SearchBarComponent);
