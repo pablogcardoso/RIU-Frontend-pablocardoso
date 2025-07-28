@@ -21,6 +21,7 @@ import { HeroViewDataParam } from '../../../domain/entities/hero-view-data-param
 })
 export class HeroViewComponent implements OnInit {
 
+  title: string = 'Agregar Heroe';
   heroForm: FormGroup = new FormGroup({
     id: new FormControl({ value: '', disabled: true }),
     name: new FormControl('', [Validators.required, Validators.maxLength(30)]),
@@ -39,6 +40,7 @@ export class HeroViewComponent implements OnInit {
 
   ngOnInit() {
     if (this.editMode) {
+      this.title = 'Editar Heroe';
       this.heroForm.patchValue({
         id: this.hero()?.id,
         name: this.hero()?.name,
