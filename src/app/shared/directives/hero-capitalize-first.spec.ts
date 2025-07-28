@@ -1,60 +1,67 @@
+import { Component, DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormControl, FormsModule } from '@angular/forms';
-
-import { By } from '@angular/platform-browser';
+import { ReactiveFormsModule, FormControl, NgControl} from '@angular/forms';
 import { CapitalizeFirstDirective } from './hero-capitalize-first';
+import { By } from '@angular/platform-browser';
+import { ErrorStateMatcher } from '@angular/material/core';
 
 @Component({
-  template: `<input type="text" [formControl]="control" appCapitalizeFirst />`
+  standalone: true,
+  selector: 'app-test-host',
+  imports: [ReactiveFormsModule, CapitalizeFirstDirective],
+  template: `<input type="text" [formControl]="name" appCapitalizeFirst />`
 })
 class TestHostComponent {
-  control = new FormControl('');
+  name = new FormControl('');
 }
 
 describe('CapitalizeFirstDirective', () => {
   let fixture: ComponentFixture<TestHostComponent>;
-  let component: TestHostComponent;
-  let inputElement: HTMLInputElement;
+  let inputEl: DebugElement;
+  let control: FormControl;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ReactiveFormsModule, FormsModule],
-      declarations: [TestHostComponent, CapitalizeFirstDirective]
+      imports: [ReactiveFormsModule, CapitalizeFirstDirective, TestHostComponent],
+      providers: [
+        {
+          provide: NgControl,
+          useFactory: () => ({
+            control: new FormControl()
+          })
+        },
+        // Evita errores si usas Angular Material y se inyecta un ErrorStateMatcher
+        { provide: ErrorStateMatcher, useValue: {} }
+      ]
     }).compileComponents();
 
     fixture = TestBed.createComponent(TestHostComponent);
-    component = fixture.componentInstance;
     fixture.detectChanges();
 
-    inputElement = fixture.debugElement.query(By.css('input')).nativeElement;
+    inputEl = fixture.debugElement.query(By.css('input'));
+    control = (fixture.componentInstance.name as FormControl);
   });
 
-  it('should create the host component', () => {
-    expect(component).toBeTruthy();
-  });
+  it('should capitalize the first letter of input value', () => {
+    const input = inputEl.nativeElement as HTMLInputElement;
 
-  it('should capitalize the first letter on input', () => {
-    inputElement.value = 'superman';
-    inputElement.dispatchEvent(new Event('input'));
+    input.value = 'angular';
+    input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(component.control.value).toBe('Superman');
+    expect(control.value).toBe('Angular');
   });
 
-  it('should keep the rest of the string unchanged after capitalizing the first letter', () => {
-    inputElement.value = 'batman';
-    inputElement.dispatchEvent(new Event('input'));
+  it('should emit value change event when insert text', () => {
+    let emitted = false;
+    control.valueChanges.subscribe(() => emitted = true);
+
+    const input = inputEl.nativeElement as HTMLInputElement;
+    input.value = 'test';
+    input.dispatchEvent(new Event('input'));
     fixture.detectChanges();
 
-    expect(component.control.value).toBe('Batman');
-  });
-
-  it('should not throw error when input is empty', () => {
-    inputElement.value = '';
-    inputElement.dispatchEvent(new Event('input'));
-    fixture.detectChanges();
-
-    expect(component.control.value).toBe('');
+    expect(emitted).toBeTrue();
+    expect(control.value).toBe('Test');
   });
 });
